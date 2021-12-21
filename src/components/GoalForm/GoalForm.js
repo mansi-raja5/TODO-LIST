@@ -31,36 +31,24 @@ const GoalForm = (props) => {
       font-weight: bold;
       display: block;
       margin-bottom: 0.5rem;
+      color: ${(props) => (props.invalid ? "red" : "black")};
     }
 
     & input {
       display: block;
       width: 100%;
-      border: 1px solid #ccc;
+      border: 1px solid ${(props) => (props.invalid ? "red" : "#ccc")};
       font: inherit;
       line-height: 1.5rem;
       padding: 0 0.25rem;
-    }
-
-    & input:focus {
-      outline: none;
-      background: #fad0ec;
-      border-color: #8b005d;
-    }
-
-    &.invalid input {
-      background: rgb(230, 179, 179);
-      border: red;
-    }
-
-    &.invalid label {
-      color: red;
+      background: ${(props) =>
+        props.invalid ? "rgb(230, 179, 179)" : "transparant"};
     }
   `;
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <FormControl className={!isValid && " invalid"}>
+      <FormControl invalid={!isValid}>
         <label>Goal</label>
         <input
           type="text"
